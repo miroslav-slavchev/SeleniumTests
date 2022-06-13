@@ -1,0 +1,9 @@
+﻿.blue-button {
+    background-color: royalblue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-family: serif;
+    padding: 7px;
+    cursor: pointer;
+}

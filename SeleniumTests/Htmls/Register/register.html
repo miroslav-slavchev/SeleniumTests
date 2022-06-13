@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+    <title></title>
+</head>
+<body>
+    <form id="register">
+        <h2>Register an employee:</h2>
+    
+        <p>Please enter your name:</p>
+
+        <label for="fname">First name:</label><br>
+        <input type="text" id="fname" name="fname"/><br>
+
+        <label for="lname">Last name:</label><br>
+        <input type="text" id="lname" name="lname"/><br>
+
+        <p>Please select your gender:</p>
+
+        <input type="radio" id="male" name="gender" value="Male" checked="checked">
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="Female">
+        <label for="female">Female</label>
+
+        <p>Please select your favourite technologies:</p>
+
+        <input type="checkbox" id="java" name="checkBox" value="Java" />
+        <label for="java">Java</label>
+        <input type="checkbox" id="cs" name="checkBox" value="C#" />
+        <label for="cs">C#</label>
+        <input type="checkbox" id="html" name="checkBox" value="HTML" />
+        <label for="html">HTML</label>
+        <input type="checkbox" id="css" name="checkBox" value="CSS" />
+        <label for="css">CSS</label>
+        <input type="checkbox" id="js" name="checkBox" value="JavaScript" />
+        <label for="js">JavaScript</label>
+
+        <div style="border-block:dashed;">
+            <p>Please select your job title:</p>
+
+            <select id="job">
+                <option>QA</option>
+                <option>Automation QA</option>
+                <option>Developer</option>
+                <option>Designer</option>
+            </select>
+            <br><br>
+        </div>
+        <br><br>
+        <button class="blue-button" onclick="submitData()">Register</button>
+
+    </form>
+
+</body>
+</html>
