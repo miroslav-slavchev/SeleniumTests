@@ -55,3 +55,60 @@ function appendParagraph(text) {
     p.appendChild(text);
     document.body.appendChild(p);
 }
+
+function disableButton(button) {
+    button.setAttribute('disabled', '');
+    button.classList.add('disabled-button');
+}
+
+function enableButton(button) {
+    button.removeAttribute('disabled');
+    button.classList.remove('disabled-button');
+    button.classList.add('enabled-button');
+}
+
+function setTooltipText(text) {
+    var tooltip = document.getElementsByClassName('tooltiptext')[0];
+    tooltip.innerHTML = '';
+    tooltip.appendChild(document.createTextNode(text));
+}
+
+function manageRegisterButton() {
+    var registerButton = document.getElementById('submit');
+    var clearButton = document.getElementById('clear');
+
+    var firstName = document.getElementById('fname').value;
+    var lastName = document.getElementById('lname').value;
+
+    if (firstName == '' || lastName == '') {
+        disableButton(registerButton);
+        setTooltipText('Enter First name and Last name to enable Register button.');
+
+        if (firstName != '' || lastName != '') {
+            enableButton(clearButton);
+        }
+        else {
+            disableButton(clearButton);
+        }
+    }
+    else {
+        enableButton(registerButton);
+        setTooltipText('Click Register button to submit data.');
+        enableButton(clearButton);
+    }
+}
+
+function showTooltip() {
+    var tooltip = document.getElementsByClassName('tooltiptext')[0];
+    tooltip.style.visibility = 'visible';
+}
+
+function hideTooltip() {
+    var tooltip = document.getElementsByClassName('tooltiptext')[0];
+    tooltip.style.visibility = 'hidden';
+}
+
+
+function clearData() {
+    window.location.reload();
+}
