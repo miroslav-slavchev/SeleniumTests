@@ -21,6 +21,7 @@ namespace SeleniumTests
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.AddArgument("start-maximized");
             Driver = new ChromeDriver(chromeOptions);
+            Driver.Navigate().GoToUrl(Url);
             //Driver.Manage().Window.Maximize();
         }
 
