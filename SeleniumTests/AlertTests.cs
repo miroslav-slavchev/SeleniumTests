@@ -1,6 +1,9 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
+using System;
 
 namespace SeleniumTests
 {
@@ -12,6 +15,23 @@ namespace SeleniumTests
         public void ValidateTitle()
         {
             Assert.That(Driver.Title, Is.EqualTo("The Internet"));
+        }
+
+        [Test]
+        [Description("Wait for alert.")]
+        public void WaitForAlert()
+        {
+            IWebElement btn = Driver.FindElement(By.CssSelector("button[onclick='jsAlert()']"));
+
+            btn.Click();
+
+            WebDriverWait webDriverWait = new WebDriverWait(Driver, TimeSpan.FromSeconds(3));
+            IAlert alert = webDriverWait.Until(ExpectedConditions.AlertIsPresent());
+            alert.Accept();
+
+            IWebElement resultElement = Driver.FindElement(By.Id("result"));
+
+            Assert.That(resultElement.Text, Is.EqualTo("You successfully clicked an alert"));
         }
 
         [Test]

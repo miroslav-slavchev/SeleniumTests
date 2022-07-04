@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace SeleniumTests
         public void LocatorsTestClass()
         {
             IWebElement clearButton = Driver.FindElement(By.ClassName("red-button"));
-           // IWebElement clearButton = Driver.FindElement(By.CssSelector(".red-button.disabled-button"));
+            // IWebElement clearButton = Driver.FindElement(By.CssSelector(".red-button.disabled-button"));
             Assert.That(clearButton.Text, Is.EqualTo("Clear"));
         }
 
@@ -74,6 +75,50 @@ namespace SeleniumTests
 
             IWebElement registerButton = Driver.FindElement(By.CssSelector("button[onclick='submitData()']"));
             registerButton.Click();
+
+            Driver.SwitchTo().Alert().Accept();
+
+            IWebElement firstParagraph = Driver.FindElement(By.CssSelector("body p:nth-child(1)"));
+            Assert.That(firstParagraph.Text, Does.Contain("Name: John Doe"));
+        }
+
+        [Test]
+        [Description("Validate you can seccesffully register an user with data: John Doe")]
+        public void RegisterAnEmployeeWithValidDataViaContextMenu()
+        {
+            IWebElement firstNameInputElement = Driver.FindElement(By.CssSelector("#fname"));
+            firstNameInputElement.SendKeys("John");
+
+            IWebElement lastNameInputElement = Driver.FindElement(By.CssSelector("#lname"));
+            lastNameInputElement.SendKeys("Doe");
+
+            IWebElement body = Driver.FindElement(By.TagName("body"));
+            Actions actions = new Actions(Driver);
+            actions.ContextClick(body).Perform();
+
+            IWebElement contextMenu = Driver.FindElement(By.Id("contextMenu"));
+            IWebElement contextRegisterButton = contextMenu.FindElement(By.Id("contextRegister"));
+            contextRegisterButton.Click();
+
+            Driver.SwitchTo().Alert().Accept();
+
+            IWebElement firstParagraph = Driver.FindElement(By.CssSelector("body p:nth-child(1)"));
+            Assert.That(firstParagraph.Text, Does.Contain("Name: John Doe"));
+        }
+
+        [Test]
+        [Description("Validate you can seccesffully register an user with data: John Doe")]
+        public void RegisterAnEmployeeWithValidDataUsingActions()
+        {
+            Actions actions = new Actions(Driver);
+            IWebElement firstNameInputElement = Driver.FindElement(By.CssSelector("#fname"));
+            actions.SendKeys(firstNameInputElement, "John").Perform();
+
+            IWebElement lastNameInputElement = Driver.FindElement(By.CssSelector("#lname"));
+            actions.SendKeys(lastNameInputElement, "Doe").Perform();
+
+            IWebElement registerButton = Driver.FindElement(By.CssSelector("button[onclick='submitData()']"));
+            actions.Click(registerButton).Perform();
 
             Driver.SwitchTo().Alert().Accept();
 
@@ -274,6 +319,52 @@ namespace SeleniumTests
             Assert.That(registerButton.GetCssValue("color"), Is.EqualTo("rgba(255, 255, 255, 1)"));
             Assert.That(registerButton.GetCssValue("background-color"), Is.EqualTo("rgba(65, 105, 225, 1)"));
             Assert.That(registerButton.GetCssValue("font-family"), Is.EqualTo("serif"));
+        }
+
+        [Test]
+        public void SelectJobProperties()
+        {
+            IWebElement job = Driver.FindElement(By.Id("job"));
+            SelectElement selectJob = new SelectElement(job);
+            Assert.IsFalse(selectJob.IsMultiple);
+            Assert.AreEqual(selectJob.Options.Count, 4);
+            Assert.AreEqual(selectJob.SelectedOption.Text, "QA");
+        }
+
+
+        [Test]
+        public void SelectJob()
+        {
+            IWebElement firstNameInputElement = Driver.FindElement(By.CssSelector("#fname"));
+            firstNameInputElement.SendKeys("John");
+
+            IWebElement lastNameInputElement = Driver.FindElement(By.CssSelector("#lname"));
+            lastNameInputElement.SendKeys("Doe");
+
+            IWebElement job = Driver.FindElement(By.Id("job"));
+            SelectElement selectJob = new SelectElement(job);
+            selectJob.SelectByText("Developer");
+
+            IWebElement registerButton = Driver.FindElement(By.CssSelector("button[onclick='submitData()']"));
+            registerButton.Click();
+
+            Driver.SwitchTo().Alert().Accept();
+
+            IWebElement resultTextP3 = Driver.FindElement(By.CssSelector("body p:nth-child(3)"));
+            Assert.AreEqual("Currently working as Developer", resultTextP3.Text);
+        }
+
+        [Test]
+        public void DoubleClickHeading()
+        {
+            IWebElement heading = Driver.FindElement(By.TagName("h2"));
+
+            heading.Click(); heading.Click();
+            Assert.IsFalse(IsAlertPresent());
+
+            Actions actions = new Actions(Driver);
+            actions.DoubleClick(heading).Perform();
+            Assert.IsTrue(IsAlertPresent());
         }
 
         private bool IsAlertPresent() => TryGetAlert() != null;
