@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+    <style>
+        p > span.label {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="register">
+        <h2>Register Form</h2>
+        <hr />
+        <form id="sections">
+            <div class="section" id="personal_info">
+                <h4>Personal information</h4>
+                <div class="form-group-fields">
+                    <div class="form-group" data-form-group-type="text-input">
+                        <label for="fname">First Name:</label>
+                        <input type="text" class="form-control" onchange="manageRegisterButton()" id="fname" />
+                    </div>
+                    <div class="form-group" data-form-group-type="text-input">
+                        <label for="lname">Last Name:</label>
+                        <input type="text" class="form-control" onchange="manageRegisterButton()" id="lname" />
+                    </div>
+                    <div class="form-group" data-form-group-type="text-input">
+                        <label for="pwd">Password:</label>
+                        <input type="password" class="form-control" id="pwd" />
+                    </div>
+                    <div class="form-group" data-form-group-type="radio-group">
+                        <label>Gender:</label>
+                        <label class="radio-inline"> <input type="radio" name="gender" checked value="Male" />Male</label>
+                        <label class="radio-inline"> <input type="radio" name="gender" value="Female" />Female</label>
+                    </div>
+                </div>
+                <hr />
+            </div>
+            <div class="section" id="job_info">
+                <h4>Job information and skills:</h4>
+                <div class="form-group-fields">
+                    <div class="form-group" data-form-group-type="select-input">
+                        <label for="job">Job title</label>
+                        <select class="form-control" id="job">
+                            <option>QA</option>
+                            <option>Developer</option>
+                            <option>Automation QA</option>
+                            <option>UI/UX Desing</option>
+                        </select>
+                    </div>
+                    <div id="programming-languages" class="form-group" data-form-group-type="checkbox-group">
+                        <label>Favourite programming languages:</label>
+                        <label class="checkbox-inline"> <input type="checkbox" value="C#" />C#</label>
+                        <label class="checkbox-inline"> <input type="checkbox" value="Java" />Java</label>
+                        <label class="checkbox-inline"> <input type="checkbox" value="JavaScript" />Javascript</label>
+                        <label class="checkbox-inline"> <input type="checkbox" value="Python" />Python</label>
+                    </div>
+                    <div id="auto-tools" class="form-group" data-form-group-type="checkbox-group">
+                        <label>Favourite automation tools:</label>
+                        <label class="checkbox-inline"> <input type="checkbox" value="Selenium" />Selenium</label>
+                        <label class="checkbox-inline"> <input type="checkbox" value="Cypress" />Cypress</label>
+                        <label class="checkbox-inline"> <input type="checkbox" value="Protractor" />Protractor</label>
+                        <label class="checkbox-inline"> <input type="checkbox" value="Katalon" />Katalon</label>
+                    </div>
+                    <div id="english" class="form-group" data-form-group-type="slider-input">
+                        <label>English (language proficiency):</label>
+                        <input style="width: 100px;" type="range" min="1" max="100" value="50" />
+                    </div>
+                    <div class="form-group" data-form-group-type="text-input-long">
+                        <label for="comment">Career aspirations:</label>
+                        <textarea class="form-control" rows="5" id="comment"></textarea>
+                    </div>
+                </div>
+                <hr />
+            </div>
+        </form>
+        <div id="footer">
+            <button disabled id="submit" onclick="submitData()" type="button" class="btn btn-primary">Register</button>
+            <button disabled id="clear" onclick="clearData()" type="button" class="btn btn-danger">Clear</button>
+        </div>
+    </div>
+</body>
+</html>
