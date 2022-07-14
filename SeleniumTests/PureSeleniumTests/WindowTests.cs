@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SeleniumTests
+namespace SeleniumTests.PureSeleniumTests
 {
     public class WindowTests : BaseTests
     {

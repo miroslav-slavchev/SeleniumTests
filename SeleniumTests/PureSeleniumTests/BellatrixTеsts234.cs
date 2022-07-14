@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SeleniumTests
+namespace SeleniumTests.PureSeleniumTests
 {
     internal class BellatrixTеsts234 : BellatrixTEsts
     {

@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SeleniumTests
+namespace SeleniumTests.PureSeleniumTests
 {
     public class GoogleTests : BaseTests
     {
@@ -22,7 +22,7 @@ namespace SeleniumTests
 
             IWebElement searchInput = Driver.FindElement(By.Name("q"));
             searchInput.SendKeys("Selenium Wikipedia");
-            
+
             Thread.Sleep(2000); // Wait 2 seconds
 
             IWebElement searchButton = Driver.FindElement(By.Name("btnK"));

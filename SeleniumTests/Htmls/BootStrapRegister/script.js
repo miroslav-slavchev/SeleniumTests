@@ -1,5 +1,5 @@
 class Employee {
-    constructor(firstName, lastName, gender, technologies, tools, english, job) {
+    constructor(firstName, lastName, gender, technologies, tools, english, job, careetNotes) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -7,6 +7,7 @@ class Employee {
         this.tools = tools;
         this.english = english;
         this.job = job;
+        this.careerNotes = careetNotes;
     }
 }
 
@@ -37,7 +38,9 @@ function getEmployeeData() {
 
     var job = document.getElementById('job').value;
 
-    var employeeData = new Employee(firstName, lastName, gender, techArray, toolsArray, english, job);
+    var notes = document.getElementById('comment').value;
+
+    var employeeData = new Employee(firstName, lastName, gender, techArray, toolsArray, english, job, notes);
     return employeeData;
 }
 
@@ -102,6 +105,15 @@ function appendData(employeeData) {
     job.setAttribute('id', 'job');
     job.appendChild(buildBadge(employeeData.job));
     panelBody.appendChild(job);
+
+    if (employeeData.careerNotes != '') {
+        var carrerNotes = document.createElement('div');
+        carrerNotes.classList.add('alert', 'alert-info');
+        carrerNotes.appendChild(document.createTextNode(employeeData.careerNotes));
+        panelBody.appendChild(carrerNotes);
+
+    }
+    
     document.body.appendChild(panel);
 }
 function getDivPanel() {

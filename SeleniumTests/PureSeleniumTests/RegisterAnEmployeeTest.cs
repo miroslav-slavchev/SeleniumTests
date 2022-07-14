@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SeleniumTests
+namespace SeleniumTests.PureSeleniumTests
 {
     public class RegisterAnEmployeeTest : BaseTests
     {

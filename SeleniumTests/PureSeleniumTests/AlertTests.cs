@@ -5,7 +5,7 @@ using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using System;
 
-namespace SeleniumTests
+namespace SeleniumTests.PureSeleniumTests
 {
     public class AlertTests : BaseTests
     {

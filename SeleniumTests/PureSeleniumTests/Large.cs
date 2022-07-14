@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SeleniumTests
+namespace SeleniumTests.PureSeleniumTests
 {
     public class Large : BaseTests
     {
@@ -32,7 +32,7 @@ namespace SeleniumTests
             Assert.AreNotEqual(xBefore, xAfter);
             Assert.AreNotEqual(yBefore, yAfter);
 
-            WebDriverWait wait = new(Driver,TimeSpan.MinValue);
+            WebDriverWait wait = new(Driver, TimeSpan.MinValue);
         }
     }
 }

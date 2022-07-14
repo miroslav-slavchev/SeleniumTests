@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SeleniumTests
+namespace SeleniumTests.PureSeleniumTests
 {
     internal class JQueryTests : BaseTests
     {
@@ -32,7 +32,7 @@ namespace SeleniumTests
             actions.MoveToElement(ageInput).Perform();
 
             int tooltipAfter = Driver.FindElements(By.CssSelector("div[role='tooltip'")).Count();
-            
+
             Assert.That(tooltipBefore, Is.EqualTo(0));
             Assert.That(tooltipAfter, Is.EqualTo(1));
         }
