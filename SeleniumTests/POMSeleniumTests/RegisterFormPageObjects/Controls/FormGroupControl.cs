@@ -9,6 +9,8 @@ namespace SeleniumTests.POMSeleniumTests.RegisterFormPageObjects.Controls
 {
     public abstract class FormGroupControl : PageObject
     {
+        private IWebElement EditButton => SearchContext.FindElement(By.CssSelector("button.btn.btn-default.btn-sm"));
+        private IWebElement OkButton => SearchContext.FindElement(By.CssSelector("button.btn.btn-primary"));
         private IWebElement NameElement => SearchContext.FindElement(By.TagName("label"));
 
         protected FormGroupControl(IWebElement searchContext) : base(searchContext)
@@ -19,6 +21,14 @@ namespace SeleniumTests.POMSeleniumTests.RegisterFormPageObjects.Controls
 
         public abstract dynamic ActualInputData { get; }
 
+
         public abstract void SetData(dynamic data);
+
+        internal void SetContextualData(dynamic data)
+        {
+            EditButton.Click();
+            SetData(data);
+            OkButton.Click();
+        }
     }
 }
