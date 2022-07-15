@@ -374,6 +374,8 @@ function openModalEdit(element) {
     var control = parent.getElementsByClassName('control')[0];
     var modal = createModal(control, name, type, id);
     parent.appendChild(modal);
+    var button = parent.querySelector('button.btn.btn-default.btn-sm');
+    button.setAttribute('disabled', '');
 }
 function createModal(control, name, type, id) {
     var modal = document.createElement('div');
@@ -419,6 +421,7 @@ function saveCotrol(element) {
     var control = modal.getElementsByClassName('control')[0];
 
     dismissModal(element);
+
     if (control.querySelector('#fname') != null) {
         setFirstName(getEmployeeDataFirstName());
     }
@@ -450,6 +453,7 @@ function saveCotrol(element) {
     if (control.querySelector('textarea') != null) {
         setNotes(getNotes());
     }
+
 }
 
 function dismissModal(element) {
@@ -459,6 +463,8 @@ function dismissModal(element) {
     formControl.appendChild(control);
     control.setAttribute('hidden', '');
     modal.remove();
+    var button = formControl.querySelector('button.btn.btn-default.btn-sm');
+    button.removeAttribute('disabled');
 }
 
 function createHeader() {

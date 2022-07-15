@@ -19,6 +19,7 @@ namespace SeleniumTests.POMSeleniumTests.RegisterFormPageObjects.Controls
 
         public override void SetData(dynamic data)
         {
+            Actions.MoveToElement(Input, 0, 0).Click().Perform();
             int inputx = (int)data;
             int currentX = int.Parse(Input.GetAttribute("value"));
             int moveBy = GetDirection(inputx, currentX);

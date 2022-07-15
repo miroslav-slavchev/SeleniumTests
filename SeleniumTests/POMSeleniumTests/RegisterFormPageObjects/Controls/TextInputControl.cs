@@ -19,6 +19,7 @@ namespace SeleniumTests.POMSeleniumTests.RegisterFormPageObjects.Controls
 
         public override void SetData(dynamic data)
         {
+            Input.Clear();
             Input.SendKeys(data);
         }
     }
